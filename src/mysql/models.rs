@@ -1,32 +1,32 @@
 use chrono::prelude::*;
 use diesel::prelude::*;
 use serde::{Serialize};
-use crate::schema::*;
+use super::schema::*;
 
 #[derive(Serialize,Identifiable, Queryable, PartialEq, Debug)]
 #[diesel(table_name = Users)]
 pub struct User {
     pub id: i32,
-    pub email: String,
-    pub createdAt: chrono::NaiveDateTime,
-    pub updatedAt: chrono::NaiveDateTime,
     pub username: Option<String>,
     pub password: Option<String>,
+    pub email: String,
     pub picture: Option<String>,
     pub postCount: Option<i32>,
     pub reputation: Option<i32>,
     pub isModerator: Option<bool>,
     pub reports: Option<String>,
+    pub createdAt: chrono::NaiveDateTime,
+    pub updatedAt: chrono::NaiveDateTime
 }
 
 #[derive(Serialize,Identifiable, Queryable, PartialEq, Debug)]
 #[diesel(table_name = Subforums)]
 pub struct Subforum {
     pub id: i32,
-    pub createdAt: chrono::NaiveDateTime,
-    pub updatedAt: chrono::NaiveDateTime,
     pub category: Option<String>,
-    pub threadCount: Option<i32>
+    pub threadCount: Option<i32>,
+    pub createdAt: chrono::NaiveDateTime,
+    pub updatedAt: chrono::NaiveDateTime
 }
 
 #[derive(Serialize,Identifiable, Queryable, PartialEq, Debug)]
@@ -36,10 +36,10 @@ pub struct Subforum {
 pub struct Thread {
     pub id: i32,
     pub title: String,
+    pub postCount: Option<i32>,
     pub reputation: i32,
     pub createdAt: chrono::NaiveDateTime,
     pub updatedAt: chrono::NaiveDateTime,
-    pub postCount: Option<i32>,
     pub SubforumId: Option<i32>,
     pub UserId: Option<i32>
 }
