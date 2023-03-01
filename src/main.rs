@@ -2,25 +2,24 @@ mod mysql;
 use std::fs;
 use diesel::prelude::*;
 use serde::{Serialize};
-use mysql::models::*;
-use mysql::util::*;
+use mysql::models::{User,Subforum,Thread,Post};
+use mysql::util::{establish_connection};
 
 fn main() {
-    use mysql::schema::Users::dsl::*;
-    use mysql::schema::Subforums::dsl::*;
-    use mysql::schema::Threads::dsl::*;
-    use mysql::schema::Posts::dsl::*;
+    use mysql::schema::{Users,Subforums,Threads,Posts};
+
     let connection: &mut MysqlConnection = &mut establish_connection();
-    let users = Users
+
+    let users = Users::dsl::Users
         .load::<User>(connection)
         .expect("Error loading users");
-    let subforums = Subforums
+    let subforums = Subforums::dsl::Subforums
         .load::<Subforum>(connection)
         .expect("Error loading subforums");
-    let threads = Threads
-    .load::<Thread>(connection)
-    .expect("Error loading threads");
-    let posts = Posts
+    let threads = Threads::dsl::Threads
+        .load::<Thread>(connection)
+        .expect("Error loading threads");
+    let posts = Posts::dsl::Posts
         .load::<Post>(connection)
         .expect("Error loading posts");
 
