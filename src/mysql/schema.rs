@@ -4,8 +4,8 @@ diesel::table! {
     Posts (id) {
         id -> Integer,
         text -> Nullable<Text>,
-        createdAt -> Datetime,
-        updatedAt -> Datetime,
+        createdAt -> Timestamp,
+        updatedAt -> Timestamp,
         UserId -> Nullable<Integer>,
         ThreadId -> Nullable<Integer>,
     }
@@ -16,8 +16,8 @@ diesel::table! {
         id -> Integer,
         category -> Nullable<Varchar>,
         threadCount -> Nullable<Integer>,
-        createdAt -> Datetime,
-        updatedAt -> Datetime,
+        createdAt -> Timestamp,
+        updatedAt -> Timestamp,
     }
 }
 
@@ -27,8 +27,8 @@ diesel::table! {
         title -> Varchar,
         postCount -> Nullable<Integer>,
         reputation -> Integer,
-        createdAt -> Datetime,
-        updatedAt -> Datetime,
+        createdAt -> Timestamp,
+        updatedAt -> Timestamp,
         SubforumId -> Nullable<Integer>,
         UserId -> Nullable<Integer>,
     }
@@ -45,8 +45,8 @@ diesel::table! {
         reputation -> Nullable<Integer>,
         isModerator -> Nullable<Bool>,
         reports -> Nullable<Text>,
-        createdAt -> Datetime,
-        updatedAt -> Datetime,
+        createdAt -> Timestamp,
+        updatedAt -> Timestamp,
     }
 }
 

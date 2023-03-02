@@ -1,12 +1,11 @@
-mod mysql;
 use std::fs;
 use diesel::prelude::*;
 use serde::{Serialize};
-use mysql::models::{User,Subforum,Thread,Post};
-use mysql::util::{establish_connection};
+use code_with_us::mysql::models::{User,Subforum,Thread,Post};
+use code_with_us::mysql::util::{establish_connection};
 
 fn main() {
-    use mysql::schema::{Users,Subforums,Threads,Posts};
+    use code_with_us::mysql::schema::{Users,Subforums,Threads,Posts};
 
     let connection: &mut MysqlConnection = &mut establish_connection();
 

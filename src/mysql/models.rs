@@ -3,7 +3,7 @@ use diesel::prelude::*;
 use serde::{Serialize};
 use super::schema::*;
 
-#[derive(Serialize,Identifiable, Queryable, PartialEq, Debug)]
+#[derive(Serialize, Identifiable, Queryable, Insertable, PartialEq, Debug)]
 #[diesel(table_name = Users)]
 pub struct User {
     pub id: i32,
@@ -19,7 +19,7 @@ pub struct User {
     pub updatedAt: chrono::NaiveDateTime
 }
 
-#[derive(Serialize,Identifiable, Queryable, PartialEq, Debug)]
+#[derive(Serialize, Identifiable, Queryable, Insertable, PartialEq, Debug)]
 #[diesel(table_name = Subforums)]
 pub struct Subforum {
     pub id: i32,
@@ -29,7 +29,7 @@ pub struct Subforum {
     pub updatedAt: chrono::NaiveDateTime
 }
 
-#[derive(Serialize,Identifiable, Queryable, PartialEq, Debug)]
+#[derive(Serialize, Associations, Identifiable, Queryable, Insertable, PartialEq, Debug)]
 #[diesel(belongs_to(User,foreign_key=UserId))]
 #[diesel(belongs_to(Subforum,foreign_key=SubforumId))]
 #[diesel(table_name = Threads)]
@@ -44,7 +44,7 @@ pub struct Thread {
     pub UserId: Option<i32>
 }
 
-#[derive(Serialize,Identifiable, Queryable, Associations, PartialEq, Debug)]
+#[derive(Serialize, Associations, Identifiable, Queryable, Insertable, PartialEq, Debug)]
 #[diesel(belongs_to(User,foreign_key=UserId))]
 #[diesel(belongs_to(Thread,foreign_key=ThreadId))]
 #[diesel(table_name = Posts)]

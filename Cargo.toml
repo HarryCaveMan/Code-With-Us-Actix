@@ -1,5 +1,5 @@
 [package]
-name = "models"
+name = "code_with_us"
 version = "0.1.0"
 edition = "2021"
 
@@ -11,3 +11,8 @@ chrono = { version = "0.4", features = ["serde"] }
 diesel = { version = "2.0.3", features = ["mysql","chrono"] }
 dotenvy = "0.15"
 serde_json = "1.0"
+actix-web = "4"
+
+[[bin]]
+name = "export_all_tables_to_json"
+doc = false
