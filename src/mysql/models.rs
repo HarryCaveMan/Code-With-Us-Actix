@@ -1,4 +1,3 @@
-use chrono::prelude::*;
 use diesel::prelude::*;
 use serde::{Serialize};
 use super::schema::*;
@@ -16,6 +15,48 @@ pub struct User {
     pub isModerator: Option<bool>,
     pub reports: Option<String>,
     pub createdAt: chrono::NaiveDateTime,
+    pub updatedAt: chrono::NaiveDateTime
+}
+
+#[derive(Serialize, Identifiable, Queryable, Insertable, PartialEq, Debug)]
+#[diesel(table_name = Users)]
+pub struct UserSnapshot {
+    pub id: i32,
+    pub username: Option<String>,
+    #[serde(skip_serializing)]
+    pub password: Option<String>,
+    #[serde(skip_serializing)]
+    pub email: String,
+    pub picture: Option<String>,
+    pub postCount: Option<i32>,
+    pub reputation: Option<i32>,
+    pub isModerator: Option<bool>,
+    #[serde(skip_serializing)]
+    pub reports: Option<String>,
+    pub createdAt: chrono::NaiveDateTime,
+    #[serde(skip_serializing)]
+    pub updatedAt: chrono::NaiveDateTime
+}
+
+#[derive(Serialize, Identifiable, Queryable, Insertable, PartialEq, Debug)]
+#[diesel(table_name = Users)]
+pub struct MinimalUserSnapshot {
+    pub id: i32,
+    pub username: Option<String>,
+    #[serde(skip_serializing)]
+    pub password: Option<String>,
+    #[serde(skip_serializing)]
+    pub email: String,
+    #[serde(skip_serializing)]
+    pub picture: Option<String>,
+    pub postCount: Option<i32>,
+    pub reputation: Option<i32>,
+    #[serde(skip_serializing)]
+    pub isModerator: Option<bool>,
+    #[serde(skip_serializing)]
+    pub reports: Option<String>,
+    pub createdAt: chrono::NaiveDateTime,
+    #[serde(skip_serializing)]
     pub updatedAt: chrono::NaiveDateTime
 }
 
